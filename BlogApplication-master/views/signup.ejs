@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&family=Montserrat:wght@500&display=swap"
+        rel="stylesheet">
+    <title>Signup</title>
+</head>
+
+<body>
+    <div class=" h-md:h-screen py-20 " style=" background: linear-gradient(90deg, #186F65, #B5CB99 25%, #FCE09B 50%, #B2533E);  ">
+        <div class="container mx-auto">
+            <div
+                class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+                <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center"
+                    style="background-image: url('back.png');">
+                    <h1 class="text-[#A2C579] text-7xl mb-10  " style="font-family: 'IBM Plex Sans', sans-serif;">
+                        Welcome.
+                    </h1>
+                    <div class="text-[#F9B572]  flex text-5xl text text-center"
+                        style="font-family: 'IBM Plex Sans', sans-serif;">
+                        <p> A place to be <u>you </u> <span> </span> all things calm and true.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2  py-16 px-12" style="font-family: 'Montserrat', sans-serif;
+                ">
+                    <h2 class="text-4xl mb-4 text-[#186F65]"> Say hello to a true community. </h2>
+                    <p class="mb-4 text-xl text-[#ED7D31]">
+                        Create your account. It's free and only takes a minute.
+                    </p>
+                    <form action="" id="registrationForm">
+                        <div class="grid grid-cols-2 gap-5">
+                           
+                            <input type="text" placeholder="John" name="firstName"
+                                class="border text-[#B2533E] border-[#186F65] py-1 px-2 rounded-lg">
+                            <input type="text" placeholder="Doe" name="lastName"
+                                class="border text-[#B2533E] border-[#186F65] py-1 px-2 rounded-lg">
+                        </div>
+                        <div class="mt-5">
+                            <input type="text" id="user_email" name="email" placeholder="johndoe@example.com"
+                                class="border text-[#B2533E] border-[#186F65] py-1 px-2 w-full rounded-lg">
+                        </div>
+                        <div id="cond_email" class="text-sm mt-1  text-[#D21312]">
+
+                        </div>
+                        <div class="mt-5">
+                            <input type="text" id="init_p" name="paswd" placeholder="Password"
+                                class="border text-[#B2533E] border-[#186F65] py-1 px-2 w-full rounded-lg">
+                        </div>
+                        <div class="mt-5">
+                            <input type="text" id="final_p" name="cnfpaswd" placeholder="Confirm Password"
+                                class="border text-[#B2533E] border-[#186F65] py-1 px-2 w-full rounded-lg">
+                        </div>
+                        <div  class="text-sm mt-1  text-[#D21312]">
+                            <p id="mismatch"> </p>
+                        </div>
+                        <div class="mt-5">
+                            <!-- <input type="checkbox" class="border border-gray-400">
+                  <span>
+                    I accept the <a href="#" class="text-[#FFC95F] font-semibold">Terms of Use</a> &  <a href="#" class="text-[#FFC95F] font-semibold">Privacy Policy</a> 
+                  </span> -->
+                        </div>
+                        <div class="mt-5">
+                            <button type="submit"
+                                class="w-full bg-[#B2533E] hover:bg-[#186F65] py-3 text-center text-white rounded-xl">Register
+                                Now</button>
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const torender = document.getElementById('cond_email');
+        form.addEventListener("submit", function (e) {
+            const initial = document.getElementById('init_p');
+            const final = document.getElementById('final_p');
+            const mismatch = document.getElementById("mismatch");
+
+
+            const emailInput = document.getElementById("user_email");
+           
+
+            // Regular expression for a valid email address
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if(!emailRegex.test(emailInput.value)) {
+                e.preventDefault();
+                torender.innerHTML = "Please enter a valid email address.";
+            }   
+
+            else if (initial.value !== final.value ) {
+                e.preventDefault(); // Prevent the default form submission
+                mismatch.innerHTML = "Password do not match."; // Display error message
+            }
+            else{
+                form.submit();
+            }
+        
+
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>
