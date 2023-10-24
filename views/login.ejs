@@ -23,18 +23,22 @@
                 </div>
                 <div class="w-full lg:w-1/2 py-16 px-12" style="font-family: 'Montserrat', sans-serif;">
                     <h2 class="text-4xl mb-4 text-center text-[#B2533E]">Enter your email and password.</u></h2>
-                    <form id="loginForm">
+                    <form  method="post" action="/login" id="loginForm">
                         <div class="mt-5">
                             <p class="text-sm m-1 text-[#B2533E]"> Email: </p>
                             <input type="text" id="user_email" name="email" placeholder="johndoe@example.com"
                                 class="border text-[#186F65] border-[#186F65]  py-1 px-2 w-full rounded-lg">
-                            <div id="email_error" class="text-sm text-[#D21312]"></div>
+                            <div  class="text-sm text-[#D21312]">
+                                <p id="email_error"> </p>
+                            </div>
                         </div>
                         <div class="mt-5">
                             <p class="text-sm m-1 text-[#B2533E]"> Password:</p>
                             <input type="password" id="user_password" name="password" placeholder="Password"
                                 class="border text-[#186F65] border-[#186F65] py-1 px-2 w-full rounded-lg">
-                            <div id="password_error" class="text-sm text-[#D21312]"></div>
+                            <div  class="text-sm text-[#D21312]">
+                                <p id="password_error"> </p>
+                            </div>
                         </div>
                         <div class="mt-5">
                             <button type="submit"
@@ -56,12 +60,14 @@
             const passwordInput = document.getElementById('user_password');
             const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
             
-            if (!emailRegex.test(emailInput.value) || passwordInput.value.trim() === "" ) {
+            if (!emailRegex.test(emailInput.value) ) {
                 event.preventDefault();
                 emailError.innerHTML = "Please enter a valid email address.";
+            }
+            else if(passwordInput.value.trim() === ""){
+                event.preventDefault();
                 passwordError.innerHTML = "Password is required.";
-            
-
+                
             }
             else{
                 form.submit();
