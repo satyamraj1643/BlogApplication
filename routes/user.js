@@ -4,10 +4,14 @@ const { User, matchPassword } = require("../models/user");
 const { randomBytes, createHmac } = require("crypto");
 const router = Router();
 
-
-
 router.get('/signup', (req, res) => {   // Static GET request by browser to open signup page
-    return res.render("signup", {message: "This is a message"})
+    const message = req.flash('message')[0];
+    if (message!==null){
+        return res.render("signup", {message : message});
+    }
+    else{
+        return res.render("signup");
+    }
 })
 
 router.post('/signup', async (req, res) => {
@@ -46,8 +50,8 @@ router.post("/login", async (req, res) => {
        res.redirect("/login")
         console.log("Wrong password");
     } else {
-        const message = "User not found, please create an account";
-        res.redirect("/signup"); // Pass the message variable to the template
+        req.flash("message","User not found, please create an account");
+        res.redirect("/signup");
         console.log("User Not Found");
       
            
