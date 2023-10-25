@@ -7,9 +7,7 @@ const router = Router();
 
 
 router.get('/signup', (req, res) => {   // Static GET request by browser to open signup page
-    return res.render("signup", {
-
-    })
+    return res.render("signup", {message: "This is a message"})
 })
 
 router.post('/signup', async (req, res) => {
