@@ -34,23 +34,25 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     console.log(email, password);
 
-    const isMatched = await User.matchPassword(email, password);
+    const isMatched = await User.matchPasswordAndgeneratetoken(email, password);
     console.log(isMatched);
 
     if (isMatched.isPresent && isMatched.isValid) {
-        res.redirect("/home");
+        res.cookie("token", isMatched.token).redirect("/home");
+
+
+
+        
         console.log("Login successful");
     } else if (isMatched.isPresent && !isMatched.isValid) {
-        res.redirect("/login");
+       res.redirect("/login")
         console.log("Wrong password");
     } else {
         const message = "User not found, please create an account";
-        res.render("signup", { message }); // Pass the message variable to the template
+        res.redirect("/signup"); // Pass the message variable to the template
         console.log("User Not Found");
       
            
-        
-     
     }
 });
 
@@ -58,10 +60,18 @@ router.post("/login", async (req, res) => {
 
 
 router.get("/login", (req, res) => {   // Static GET request by browser to open login page
-    return res.render("login");
+   res.render("login");
 })
+
 router.get("/home", (req, res) => {
-    res.render("home");
+    res.render("home", {
+        user : req.user,
+    });
+})
+
+router.get("/logout", (req,res)=>{
+    res.clearCookie('token').redirect("/home");
+
 })
 
 
