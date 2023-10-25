@@ -27,7 +27,7 @@
                         <div class="mt-5">
                             <p class="text-sm m-1 text-[#B2533E]"> Email: </p>
                             <input type="text" id="user_email" name="email" placeholder="johndoe@example.com"
-                                class="border text-[#186F65] border-[#186F65]  py-1 px-2 w-full rounded-lg">
+                                class="border  border-[#186F65]  py-1 px-2 w-full rounded-lg">
                             <div  class="text-sm text-[#D21312]">
                                 <p id="email_error"> </p>
                             </div>
@@ -35,11 +35,16 @@
                         <div class="mt-5">
                             <p class="text-sm m-1 text-[#B2533E]"> Password:</p>
                             <input type="password" id="user_password" name="password" placeholder="Password"
-                                class="border text-[#186F65] border-[#186F65] py-1 px-2 w-full rounded-lg">
+                                class="border  border-[#186F65] py-1 px-2 w-full rounded-lg">
                             <div  class="text-sm text-[#D21312]">
                                 <p id="password_error"> </p>
                             </div>
+
                         </div>
+                        <div  class="text-sm m-1  text-center text-[#D21312]" > <p id="b_p"> 
+                            
+                        
+                        </p> </div>
                         <div class="mt-5">
                             <button type="submit"
                                 class="w-full bg-[#186F65] hover:bg-[#B2533E] py-3 text-center text-white rounded-xl">Login</button>
@@ -75,6 +80,9 @@
 
                    
         });
+
+        const b_p = document.getElementById("b_p");
+        
     </script>
 </body>
 </html>

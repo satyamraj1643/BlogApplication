@@ -1,4 +1,7 @@
 const express = require("express");
+const {ejs} = require("ejs");
+var cookieParser = require('cookie-parser')
+const{checkForAuthenticationCookie} = require("./middleware/cookieAuthentication")
 const {router} = require("./routes/user");
 const path = require("path");
 const {handleDBConnection} = require("./dbconnection");
@@ -10,6 +13,8 @@ handleDBConnection(url);
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
+app.use(cookieParser())
+app.use(checkForAuthenticationCookie("token"));
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static("./public"))
