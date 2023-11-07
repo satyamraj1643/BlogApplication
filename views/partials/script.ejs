@@ -1,8 +1,12 @@
-<script>
-    const navLinks = document.querySelector('.nav-links')
-    function onToggleMenu(e){
-        e.name = e.name === 'menu' ? 'close' : 'menu'
-        navLinks.classList.toggle('top-[9%]')
+<script type="text/javascript">
+    function dropdown(){
+        document.querySelector('#submenu').classList.toggle('hidden');
+        document.querySelector('#arrow').classList.toggle('rotate-0');
     }
+
+    function Open(){
+        document.querySelector('.sidebar').classList.toggle('left-[-300px]');  
+    }
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>

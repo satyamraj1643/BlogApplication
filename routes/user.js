@@ -41,32 +41,29 @@ router.post("/login", async (req, res) => {
 
     if (isMatched.isPresent && isMatched.isValid) {
         res.cookie("token", isMatched.token).redirect("/home");
-
-
-
-        
         console.log("Login successful");
     } else if (isMatched.isPresent && !isMatched.isValid) {
        res.redirect("/login")
         console.log("Wrong password");
     } else {
-        req.flash("message","User not found, please create an account");
+        req.flash("message","User not found, please create an account.");
         res.redirect("/signup");
         console.log("User Not Found");
-      
-           
+            
     }
 });
 
 
-
+router.get('/', (req,res)=>{
+    res.redirect("/home");
+})
 
 router.get("/login", (req, res) => {   // Static GET request by browser to open login page
    res.render("login");
 })
 
 router.get("/home", (req, res) => {
-    res.render("home", {
+   return  res.render("home", {
         user : req.user,
     });
 })

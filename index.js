@@ -3,6 +3,7 @@ const {ejs} = require("ejs");
 var cookieParser = require('cookie-parser')
 const{checkForAuthenticationCookie} = require("./middleware/cookieAuthentication")
 const {router} = require("./routes/user");
+const {blogrouter} = require("./routes/blog");
 const path = require("path");
 const {handleDBConnection} = require("./dbconnection");
 const { json } = require("express/lib/response");
@@ -19,17 +20,30 @@ app.use(checkForAuthenticationCookie("token"));
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static("./public"))
-app.get("/", (req,res)=>{
-   return res.render("home");
+
+
+const {Blog} = require('./models/blog');
+
+app.get("/home", async (req,res)=>{
+    const allblog = await Blog.find({}).sort('createdAt');
+
+     res.render("home", {
+        user:req.user,
+        blogs: allblog,
+     })
 })
+
+
+
 app.use(sessions({
     secret : "MainNahiBataunga",
     saveUninitialized : true,
     resave : true
 }))
 app.use(flash());
-app.use("/", router);
 
+app.use("/", router);
+app.use("/", blogrouter);
 
 app.listen(PORT, ()=>{
     console.log("Server connected to : ", PORT);

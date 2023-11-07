@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<%- include('./partials/head.ejs') %>
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+    }
+</style>
+
+<body class="font-[Montserrat] bg-[#89CFF3] h-screen">
+
+   
+    <div class="flex">
+        <div class="w-1/2 p-4">
+            <%- include('./partials/nav_blog.ejs') %>
+        </div>
+        <div class="m-1 p-2">
+            <div class="flex justify-center items-center h-screen">
+                <div class="w-full max-w-md rounded-lg glass-card p-6 hover:bg-opacity-80 transition duration-300">
+                    <form action="/" method="post" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="title" class="block text-sm font-medium text-gray-700">Title:</label>
+                            <input placeholder="What the title is about?" type="text" id="title" name="title" class="mt-1 p-2 w-full border rounded">
+                        </div>
+                
+                        <div class="mb-4">
+                            <label for="body" class="block text-sm font-medium text-gray-700">Body:</label>
+                            <textarea name="body" id="body" class="mt-1 p-2 w-full border rounded" placeholder="Write about something"></textarea>
+                        </div>
+                
+                        <div class="mb-4">
+                            <label for="coverImage" class="block text-sm font-medium text-gray-700">Cover Image:</label>
+                            <input type="file" id="coverImage" name="coverImage" class="mt-1">
+                        </div>
+                
+                        <div class="text-center">
+                            <button type="submit" class="text-white p-3 rounded-full bg-[#186F65] hover.bg-[#145b4f]">
+                                Submit details
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+   
+
+   
+
+    <%- include('./partials/script.ejs') %>
+</body>
+
+</html>
