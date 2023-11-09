@@ -3,6 +3,7 @@ const  multer  = require("multer")
 const path = require("path");
 
 const {Blog} = require('../models/blog');
+const { Comment } = require("../models/comment");
 
 const blogrouter = Router();
 
@@ -59,10 +60,28 @@ blogrouter.post('/', upload.single("coverImage"), async (req, res) => {
 });
 blogrouter.get('/:id',async (req,res)=>{
        const blog = await Blog.findById(req.params.id);
+       const comments = await Comment.find({ blogId: req.params.id }).populate(
+        "createdBy"
+      );
+       console.log(comments);
        return res.render('blogview', {
         user : req.user,
         blog: blog,
+        comments: comments,
        })
+})
+
+blogrouter.post("/comment/:blogId", async(req,res)=>{
+
+    console.log(req.params);
+        const comment = await  Comment.create({
+             content: req.body.content,
+             blogId : req.params.blogId,
+             createdBy : req.user._id,
+        });
+        console.log(comment);
+
+        return res.redirect(`/${req.params.blogId}`)
 })
 
 

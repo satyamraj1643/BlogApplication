@@ -1,6 +1,7 @@
 const express = require("express");
 const {ejs} = require("ejs");
 var cookieParser = require('cookie-parser')
+// const bodyParser = require('body-parser')
 const{checkForAuthenticationCookie} = require("./middleware/cookieAuthentication")
 const {router} = require("./routes/user");
 const {blogrouter} = require("./routes/blog");
@@ -20,6 +21,7 @@ app.use(checkForAuthenticationCookie("token"));
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static("./public"))
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const {Blog} = require('./models/blog');

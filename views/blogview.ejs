@@ -21,13 +21,43 @@
         </div>
             
          <div>
-           <pre> Body: <%- blog.body %> </pre> 
-         </div>  
-         
-         <a href="/goback" class="bg-blue p-2 bg-slate-500 rounded-xl"> Go to blogs. </a>
+           <p> Body: <%- blog.body %> </p> 
+         </div> 
+         <br>
+      
+         <% if (!user) { %> 
+          <br>
+            <p>  <%- comments.length %> comments </p>
+            <br>
+            <% } else { %>
+              
+              <p> Add a comment</p>
+              <form action="/comment/<%= blog._id %>" method="post">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="rounded-md"
+                    name="content"
+                    class="form-control"
+                    placeholder="Enter your comment"
+                  />
+                  <button class=" bg-slate-400  p-2 rounded-xl" type="submit">Add</button>
+                </div>
+              </form>
+          
+            <% } %>
 
-
+     
+        <div class="mt-3">
+          <% comments.forEach(comment => { %>
+          <div>
+            <img src="<%= comment.createdBy.profileImageURL %>" width="50px" />
+            <%= comment.createdBy.firstName %>
+            <pre><%= comment.content %></pre>
+          </div>
+          <% }) %>
         </div>
+        <a href="/goback" class="bg-blue p-2 bg-slate-500 rounded-xl"> Go to blogs. </a>
        
 
     </div>
