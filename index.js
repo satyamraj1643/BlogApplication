@@ -33,6 +33,10 @@ app.get("/home", async (req,res)=>{
      })
 })
 
+app.get('/goback', (req,res)=>{
+    return res.redirect("/home");
+})
+
 
 
 app.use(sessions({

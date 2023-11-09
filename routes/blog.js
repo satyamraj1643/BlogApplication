@@ -51,12 +51,20 @@ blogrouter.post('/', upload.single("coverImage"), async (req, res) => {
           userName: `${req.user.firstName} ${req.user.lastName}`
       });
 
-      return res.redirect(`/blog/${blog._id}`);
+      return res.redirect(`/${blog._id}`);
   } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Internal server error' });
   }
 });
+blogrouter.get('/:id',async (req,res)=>{
+       const blog = await Blog.findById(req.params.id);
+       return res.render('blogview', {
+        user : req.user,
+        blog: blog,
+       })
+})
+
 
 
 module.exports={

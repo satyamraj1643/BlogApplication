@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<%- include('./partials/head.ejs') %>
+
+<body class="font-[Montserrat] bg-[#89CFF3] h-screen">
+
+
+  <div class="flex">
+    <div class=" p-4">
+      <%- include('./partials/navbarused.ejs') %>
+    </div>
+    <div class="ml-[18rem] p-4 mt-32">
+
+      <div class="flex flex-wrap justify-center">
+
+        <div>
+            <img src="<%- blog.coverImageURL %>" width="300px"> 
+        </div>
+        <div>
+            Blog Title : <%- blog.title %>
+        </div>
+            
+         <div>
+           <pre> Body: <%- blog.body %> </pre> 
+         </div>  
+         
+         <a href="/goback" class="bg-blue p-2 bg-slate-500 rounded-xl"> Go to blogs. </a>
+
+
+        </div>
+       
+
+    </div>
+</div>
+  
+   
+
+   
+
+    <%- include('./partials/script.ejs') %>
+</body>
+
+</html>
