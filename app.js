@@ -1,4 +1,6 @@
+require("dotenv").config();
 const express = require("express");
+
 const {ejs} = require("ejs");
 var cookieParser = require('cookie-parser')
 // const bodyParser = require('body-parser')
@@ -8,11 +10,12 @@ const {blogrouter} = require("./routes/blog");
 const path = require("path");
 const {handleDBConnection} = require("./dbconnection");
 const { json } = require("express/lib/response");
-const PORT = 8000;
-const url = "mongodb://127.0.0.1:27017/";
+const PORT =  process.env.PORT; // changed for cloud compatibility
+
+//const url = "mongodb://127.0.0.1:27017/";
 const flash = require("express-flash")
 const sessions = require("express-session")
-handleDBConnection(url);
+handleDBConnection(`${process.env.MONGO_URL}`);
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
