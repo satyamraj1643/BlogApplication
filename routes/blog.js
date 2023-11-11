@@ -52,13 +52,13 @@ blogrouter.post('/', upload.single("coverImage"), async (req, res) => {
           userName: `${req.user.firstName} ${req.user.lastName}`
       });
 
-      return res.redirect(`/${blog._id}`);
+      return res.redirect(`/blog/${blog._id}`);
   } catch (error) {
       console.error(error);
       return res.status(500).json({ error: 'Internal server error' });
   }
 });
-blogrouter.get('/:id',async (req,res)=>{
+blogrouter.get('/blog/:id',async (req,res)=>{
        const blog = await Blog.findById(req.params.id);
        const comments = await Comment.find({ blogId: req.params.id }).populate(
         "createdBy"
@@ -81,7 +81,7 @@ blogrouter.post("/comment/:blogId", async(req,res)=>{
         });
         console.log(comment);
 
-        return res.redirect(`/${req.params.blogId}`)
+        return res.redirect(`/blog/${req.params.blogId}`)
 })
 
 
